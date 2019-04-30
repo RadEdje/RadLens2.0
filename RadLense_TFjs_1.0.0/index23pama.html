@@ -1,0 +1,290 @@
+<!-- 
+index.html
+This is the main html page for the web app.
+Please see the README.md file to find out how to use
+the web app. 
+
+It was inspired by the emoji scavenger hunt google project (see CREDITS below).
+The emoji savenger hunt however was written in typscript. I modified the code so it
+could run with raw/vanilla javascript. (Thank you  to the dev team of the
+emoji scavenger hunt for ansering all my questions regarding their app). Instead of
+creating a UX/UI for a game to detect emojis(like in the original), the current frontEnd 
+is used to scan images then takes you to a google image search to cross reference the image
+found. 
+
+
+CREDITS:
+inspired by code from 
+https://github.com/google/emoji-scavenger-hunt under the APACHE 2.0 License
+
+
+
+
+
+
+
+AUTHOR OF CURRENT CODE: Erwin John T. Carpio
+
+ Copyright 2019 ERWIN JOHN T. CARPIO
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>RadLens2 by RadEdje</title>
+    <link rel="stylesheet" href="./public/css/styles.css">
+
+    <!-- FONTS -->
+    <link
+        href="https://fonts.googleapis.com/css?family=Amethysta|Rambla|Dancing+Script|Gloria+Hallelujah|Indie+Flower|Lobster|Pacifico|Orbitron|Berkshire+Swash|Macondo+Swash+Caps|Cookie"
+        rel="stylesheet">
+
+    <!-- FONT AWESOME -->
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.1.0/css/all.css"
+        integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" crossorigin="anonymous">
+</head>
+
+<body>
+    <!-- facebook sdk start-->
+    <div id="fb-root"></div>
+    <script>
+        (function (d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = 'https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v3.0';
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+    <!-- facebook sdk end -->
+
+    <div id="header" class="header">
+
+        <div class="headerLeft" id="headerLeft">
+            <p id="header__burger" class="header__burger">
+                <i class="fas fa-bars"></i>
+            </p>
+            <p>RadLens2 by RadEdje</p>
+        </div>
+
+        <div class="headerRight" id="headerRight">
+            <div class="headerRight_options">
+                <i id="shareIcon" class="fas fa-share"></i>
+                <div id="share__btns" class="share__btns share__btns--hidden">
+                    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"
+                        data-size="large" data-text="Hi" data-hashtags="democratizeAI" data-show-count="false">Tweet</a>
+                    <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                    
+                    <div class="fb-share-button" data-href="https://radhorizon.com/radlens2/" 
+                        data-layout="button" data-size="large"><a target="_blank" 
+                        href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fradhorizon.com%2Fradlens2%2F&amp;src=sdkpreparse"
+                        class="fb-xfbml-parse-ignore">Share</a>
+                    </div>                    
+                    <!-- <div class="fb-share-button" data-href="https://radhorizon.com/radlens2/"
+                        data-layout="button" data-size="large" data-mobile-iframe="false"><a target="_blank"
+                            href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fradhorizon.com%2FSITES%2FRadLense%2Findex6.html&amp;src=sdkpreparse"
+                            class="fb-xfbml-parse-ignore">Share</a>
+                    </div> -->
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="dimmer" class="dimmer dimmer--hide"></div>
+
+    <div id="menu" class="menu menu--hide">
+        <div id="menu_exit" class="menu_exit">
+            <i class="fas fa-times"></i>
+        </div>
+
+        <div>
+            <h1>User Guide</h1>
+        </div>
+
+        <ul>
+            <li>
+                <h2>About the WebApp</h2>
+
+                <p>This web app has just been fully updated and migrated to the latest cutting edge version of
+                    tensorflow 2.0 (python) and tensorflowjs (for javascript ver 1.0). The last version would
+                    need to load a much larger AI/ML model with more shards resulting in longer initial load times and
+                    slower prediction rates. The current version predicts faster and loads faster with an
+                    even smaller AI/ML model foot print. The integration of keras as a higher level API has made
+                    writing native tensorflow amazingly straight forward.</p>
+
+                <p> This web app runs an AI/ML algorithm completely in the browser and can use graphics acceleration for
+                    faster
+                    inference and prediction.</p>
+
+                <p> It uses the camera (On phone or desktop) to scan images and tries to recognize Galeazzi versus
+                    Monteggia
+                    fractures (not certified for medical use yet). No images or video are uploaded to any cloud server.
+                    All
+                    computations are processed directly on your machine.
+                </p>
+
+                <p>Currently known to run on: The latest firefox, opera and chrome on desktop/laptop, Samsung galaxy S8,
+                    Mi6,
+                    OnePlus5T (on android 8.0 oreo), iphoneX, iphoneSE, iphoneC (running at least safari 11). Hardware
+                    limitations
+                    may limit the speed of the prediction or drain phone batteries quickly as AI/ML may prove demanding
+                    on
+                    certain types of hardware. The current version's initial loading time can reach less than 10-30
+                    seconds or more
+                    depending on the internet speed (initial loading times for the older version ranged from 1-2
+                    minutes) as
+                    the AI/ML model is deployed. Subsequent reloads will be faster as the model is cached (unless the
+                    browser is closed
+                    and restarted).
+                </p>
+            </li>
+            <li>
+                <h2>Camera Scanner</h2>
+                <p>Press the round button on the lower right to start scanning.</p>
+                <p>Focus the camera on a Galeazzi or Monteggia fracture.</p>
+                <p>Real time predictions and their respective probabilites are on the upper left.</p>
+                <p>An error log module will list errors on the lower left if there are any. Otherwise it will say that
+                    web cam
+                    captures and the model predicts.</p>
+                <p>Final prediction will be at the bottom bar revealing a link to a google image search</p>
+                <p>To hide real time predictions/statistics and error log...press the button below
+                </p>
+
+                <button id="debug" class="debug">Hide/Show statistis and error</button>
+
+            </li>
+
+            <li>
+                <h2>Current work in progress by:</h2>
+                <p>Dr. Erwin John T. Carpio (Radiologist, FrontEnd Web Developer, AI Enthusiast).
+                </p>
+            </li>
+
+            <li>
+                <p>I tried my hand at an AI/ML project so that I might hopefully encourage my fellow radiologists
+                    in my country or anywhere in the world to more actively participate in the growth and development
+                    of AI/ML for radiology. I hope to prove to them that the technology is not beyond their reach
+                    especially with amazing libraries like tensorflow which have made it easier and more approachable
+                    for professionals like myself to explore the amazing world and possible applications of AI/ML in
+                    my domain of expertise.
+                </p>
+            </li>
+
+            <li>
+                <h2>After Thoughts</h2>
+                <p>Would a DICOM scanner be intersting?</p>
+                <p>This is currently a "proof of concept" (powered by tensorflow 2.0) to help inform and spread the word
+                    on the
+                    possibilities of AI/ML applications in medicine and radiology. If you have suggestions or want to
+                    collaborate
+                    on a project we can always discuss. You can find me on:
+                </p>
+                <div id="socialIcons" class="socialIcons">
+                    <a href="https://www.facebook.com/erwinjohn.carpio.7">
+                        <i class="fab fa-facebook"></i>
+                    </a>
+                    <a href="https://github.com/RadEdje">
+                        <i class="fab fa-github-square"></i>
+                    </a>
+                    <a href="https://twitter.com/CarpioEjt">
+                        <i class="fab fa-twitter-square"></i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/erwin-john-t-carpio-md/">
+                        <i class="fab fa-linkedin"></i>
+                    </a>
+                </div>
+
+            </li>
+            <li>
+                <h2>Some Resources:</h2>
+                <p>
+                    <a href="https://www.tensorflow.org/">Tensorflow (python)</a>
+                </p>
+                <p>
+                    <a href="https://js.tensorflow.org/">Tensorflow.js</a>
+                </p>
+                <p>
+                    <a href="https://keras.io/">keras.io</a>
+                </p>
+            </li>
+        </ul>
+    </div>
+
+    <div id="splash" class="splash">
+        <div id="welcome" class="welcome">
+            <h1>RadLens2 by RadEdje...</h1>
+
+            <div id="subtitle" class="subtitle">
+                <p>
+                    Loading AI model........
+                    <i class="fas fa-spinner fa-1x fa-spin"></i>
+                </p>
+
+                <p>For Galeazzi and Monteggia fractures</p>
+            </div>
+
+            <p>Initial load takes 10-30 seconds if on slow connections or less on fast connections.
+                Press the button on the lower right to start scanning. Focus the camera on 
+                Galeazzi or Monteggia fracture. Real time predictions are on the upper left. Final
+                prediction will be at the bottom revealing a link to google image search
+            </p>
+        </div>
+
+    </div>
+
+    <div id="fps" class="fps"></div>
+
+    <div id="errors" class="errors"></div>
+
+    <div class="main" id="main">
+        <div id="container">
+            <video autoplay="true" playsinline id="videoElement"></video>
+        </div>
+
+        <div id="prediction" class="prediction">
+            <div id="fracture" class="fracture">
+                <p>The Fracture is...</p>
+            </div>
+        </div>
+
+    </div>
+
+
+    <div id="gfab" class="gfab">
+        <i id="gfab__icon" class="fas fa-camera fa-2x"></i>
+    </div>
+
+    <a href=""></a>
+
+    <footer>
+        <!-- local is version tf.js version 1.0.0 -->
+        <!-- <script type="text/javascript" src="./tf/tfjs@1.0.0.js"></script> -->
+        <!-- cdn now at tfjs 1.0.0 -->
+        <!-- <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script> -->
+        <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@1.0.0"></script>
+        <script type="text/javascript" src="./index.js"></script>
+    </footer>
+
+</body>
+
+</html>
