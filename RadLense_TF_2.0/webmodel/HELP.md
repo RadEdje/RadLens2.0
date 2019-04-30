@@ -1,0 +1,1 @@
+* the converted model including the mode.json file and shards for use with tensorflow.js in the browser is saved here.
