@@ -15,7 +15,7 @@ tries to classify images as either a Monteggia or Galeazzi fracture (fractures o
 ## HOW TO USE THE WEB APP  
   1. Opening the app leads you to a splash screen while the AI/ML Model loads in the background. Initial loading time used to take 1-2 minutes but using the new tensorflow 2.0 has vastly sped up the loading time now down to 10-30 seconds. This will then take you to the main app screen. 
   <br>
-  <img src="./imgHelp/splash.png" style="height:50vw; height:50vh; margin: 0 3rem 0 3rem" />
+  <img src="./imgHelp/splash.png" style="height:50vh; width:50vh; margin: 0 3rem 0 3rem" />
   <img src="./imgHelp/radLensStills1.png" style="height:50vw; height:50vh; margin: 0 3rem 0 3rem" />
   <br>
   2. PRESS the pink floating action button with a `Camera` icon at the right lower corner of the main app screen to start scanning with your device's camera.  
