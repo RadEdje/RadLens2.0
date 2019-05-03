@@ -1,1 +1,0 @@
-* the original tf.keras model is saved i this folder

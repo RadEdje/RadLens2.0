@@ -1,11 +1,11 @@
 # RadLens2 powered by Tensorflow 2.0
 
-### This is the fully migrated version of my inital RadLense web app now using Tensorflow 2.0 (python) and Tensorflow.js ver 1.0.0
+### This is the fully migrated version of my inital RadLens web app now using Tensorflow 2.0 (python) and Tensorflow.js ver 1.0.0
 
 RadLens2 (just like the initial RadLens) is a web app that 
 tries to classify images as either a Monteggia or Galeazzi fracture (fractures of the forearm). It uses an AI/ML algorithm that runs right in the browser on the local machine (phones running android 8.0 or iOS devices running safari 11; latest chrome, firefox, opera on laptop and desktop). It uses the phone's/laptop's/desktop's camera to scan images.
 
-## Differences from the original Radlense:
+## Differences from the original Radlens:
   * now uses the native tf.keras api (instead of keras itself).
   * smaller AI/ML model foot print after conversion from native tf python to tf js
   * results in faster initial load times (10-30 seconds on some moderate internet connection speeds versus the older web app which used to take 1-2 mins for the initial load time
@@ -52,7 +52,7 @@ pip install tensorflowjs
 
 ## TRAINING
 
-1. cd into the RadLense_TF_2.0 folder
+1. cd into the RadLens_TF_2.0 folder
 2. in the `data` folder are 2 folders
   * train
   * validation
@@ -60,7 +60,7 @@ pip install tensorflowjs
   * create folders that correspond to the `classes` you want your images classified under. It's best to used an alphanumeric naming scheme for the folders (ex: A1,A2,A3...B1,B2,B3... etc). This is used for the data generator functions in the python code.
 4. in the `validation` folder:
   *do the same as for the `train folder` using the images that will be used at the validation data set.
-5. In terminal,while in the RadLense2.0 folder, use the following python command template to start training:
+5. In terminal,while in the `RadLens2.0` folder, use the following python command template to start training:
   ```
   python train.py --classes=2 --batch=2 --epochs=2 --size=224
   ```
@@ -84,7 +84,7 @@ pip install tensorflowjs
 
 
 ## Conversion for javascript
-  1. Once you have a modle.h5 file you want to convert for use with tensorflow.js, you can use the following python command in terminal while still in the `RadLense_TF_2.0` Folder
+  1. Once you have a modle.h5 file you want to convert for use with tensorflow.js, you can use the following python command in terminal while still in the `RadLens_TF_2.0` Folder
   ```
      tensorflowjs_converter \
      --input_format=keras \
@@ -100,10 +100,10 @@ pip install tensorflowjs
 the number of bin files depends the model size
 
   3. Copy the contents of the `webmodel` folder
-  4. Paste the file contents into the `kerasModel` folder in the `RadLense_TFjs_1.0.0` folder.   
+  4. Paste the file contents into the `kerasModel` folder in the `RadLens_TFjs_1.0.0` folder.   
 
-## UPLOAD and serve THE RadLense_TFjs_1.0.0 folder
-  1. Upload the entire contents of the RadLense_TFjs_1.0.0 folder onto your server. 
+## UPLOAD and serve THE RadLens_TFjs_1.0.0 folder
+  1. Upload the entire contents of the RadLens_TFjs_1.0.0 folder onto your server and load the index.html file to run the web app. 
 
 
 ## SOURCES:
